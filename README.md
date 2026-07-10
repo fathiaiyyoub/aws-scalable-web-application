@@ -71,4 +71,6 @@ The following diagram illustrates the overall AWS architecture implemented for t
 
 > **Note:** The architecture was designed to demonstrate high availability, advanced request routing, secure access to Amazon S3 using IAM roles, and DNS integration through Amazon Route 53.
 
-![AWS Architecture](architecture/architecture.png)
+![AWS Architecture](architecture.png)
+
+
