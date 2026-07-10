@@ -2,13 +2,13 @@
 
 A production-style AWS Solutions Architecture portfolio project demonstrating the design, deployment, and documentation of a scalable web application on Amazon Web Services (AWS).
 
-The solution implements high availability using an Application Load Balancer (ALB), multiple Amazon EC2 instances deployed across different Availability Zones, Amazon Route 53 DNS integration with a custom domain, and advanced request routing using both **host-based** and **path-based** routing rules.
-lemented using the AWS Management Console and subsequently reverse-engineered into
-The infrastructure was imp **Terraform** to provide Infrastructure as Code (IaC), making the solution easier to understand, version control, and reproduce.
+The solution demonstrates a highly available architecture using an Application Load Balancer (ALB), Amazon EC2, Amazon Route 53, and advanced request routing through both host-based and path-based routing rules.
+
+Following the deployment, the infrastructure was reverse-engineered into **Terraform** to provide Infrastructure as Code (IaC), making the solution easier to understand, version control, and reproduce.
 
 > **Status:** ✅ Completed
->
-> ---
+
+---
 
 # Business Scenario
 
@@ -22,7 +22,8 @@ The solution must:
 - Be scalable to support future application growth.
 - Follow Infrastructure as Code (IaC) principles for maintainability and repeatability.
 
-- ---
+---
+
 # Project Objectives
 
 The objectives of this project were to:
@@ -36,7 +37,7 @@ The objectives of this project were to:
 - Reverse-engineer the deployed infrastructure into Terraform to demonstrate Infrastructure as Code (IaC) best practices.
 - Produce professional documentation and project artifacts suitable for an AWS Solutions Architect portfolio.
 
-- ---
+---
 
 # Solution Architecture
 
@@ -44,9 +45,7 @@ The solution follows a highly available, multi-tier AWS architecture designed to
 
 Users access the application through a custom domain managed by Amazon Route 53. DNS requests are forwarded to an internet-facing Application Load Balancer (ALB), which evaluates listener rules and routes traffic based on either the requested URL path or the requested host header (subdomain).
 
-The backend application consists of two Amazon EC2 instances (Red and Blue), each serving different web content. Website assets are stored in Amazon S3 and retrieved securely by the EC2 instances using an IAM role with least-privilege permissions.
-
-Following the successful deployment, the infrastructure was reverse-engineered into Terraform to provide Infrastructure as Code (IaC), allowing the environment to be version controlled, documented, and reproduced using industry-standard practices.
+The backend application consists of two Amazon EC2 instances (Red and Blue), each serving different web content. Website assets are stored in Amazon S3 and retrieved securely by the EC2 instances using an IAM role following the principle of least privilege.
 
 ---
 
@@ -67,10 +66,72 @@ Following the successful deployment, the infrastructure was reverse-engineered i
 
 # Architecture Diagram
 
-The following diagram illustrates the overall AWS architecture implemented for this project.
+The following diagram provides a high-level view of the AWS solution implemented for this project.
 
-> **Note:** The architecture was designed to demonstrate high availability, advanced request routing, secure access to Amazon S3 using IAM roles, and DNS integration through Amazon Route 53.
+It illustrates how Amazon Route 53, the Application Load Balancer, Amazon EC2 instances, IAM roles, and Amazon S3 work together to deliver a scalable and highly available web application.
 
 ![AWS Architecture](architecture.png)
 
+---
 
+# Key Features
+
+- Highly available architecture across multiple Availability Zones.
+- Path-based and host-based request routing using an Application Load Balancer.
+- Custom domain integration with Amazon Route 53.
+- Secure access to Amazon S3 using IAM roles.
+- Infrastructure documented as Terraform Infrastructure as Code (IaC).
+- Terraform configuration validated using `terraform validate`.
+
+---
+
+# Testing & Validation
+
+The deployed solution was successfully tested to verify both functionality and architecture.
+
+## Functional Testing
+
+- Verified connectivity to both Amazon EC2 instances.
+- Confirmed successful retrieval of website assets from Amazon S3 using the configured IAM role.
+- Verified Application Load Balancer health checks for both target groups.
+- Tested path-based routing using:
+  - `/red`
+  - `/blue`
+- Tested host-based routing using:
+  - `red.fathiaiyyoub.com.au`
+  - `blue.fathiaiyyoub.com.au`
+- Verified DNS resolution through Amazon Route 53.
+- Confirmed application accessibility through the custom domain.
+
+## Infrastructure Validation
+
+The deployed infrastructure was reverse-engineered into Terraform and validated using:
+
+```bash
+terraform validate
+```
+
+The Terraform configuration was then formatted using:
+
+```bash
+terraform fmt
+```
+
+Screenshots demonstrating the deployment, routing configuration, DNS records, Terraform project structure, and validation are included throughout this repository.
+
+---
+
+# Lessons Learned
+
+This project reinforced the importance of designing cloud solutions that are not only functional but also scalable, maintainable, and well documented.
+
+Beyond deploying AWS resources, it demonstrated the value of Infrastructure as Code, architectural documentation, validation, and version control as part of delivering production-style cloud solutions.
+
+Key takeaways included:
+
+- Designing highly available architectures across multiple Availability Zones.
+- Configuring both path-based and host-based routing using an Application Load Balancer.
+- Integrating Amazon Route 53 with a custom domain.
+- Applying the principle of least privilege through IAM roles.
+- Organizing Infrastructure as Code using Terraform into logical, maintainable components.
+- Appreciating the importance of documentation and validation as part of a complete cloud solution.
